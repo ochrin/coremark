@@ -1,0 +1,51 @@
+menu "CoreMark Configuration"
+
+choice RUN
+    prompt "Type of run"
+    default PERFORMANCE_RUN
+    help
+        Run the benchmark with different parameters.
+
+config PERFORMANCE_RUN
+    bool "Performance run"
+config VALIDATION_RUN
+    bool "Validation run"
+config PROFILE_RUN
+	bool "Profile run"
+
+endchoice
+
+choice COMPILER_FLAGS
+	prompt "Compiler optimisation"
+    default O3
+    help 
+    	Compiler optimization. For best CoreMark result select Turn on all.
+
+config O3
+	bool "Turn on all"
+config 00
+	bool "Turn off all"
+	
+endchoice
+
+config ITERATIONS
+    int "Number of iterations (1000 to 5000)"
+    default 5000
+    range 1000 5000
+    help
+    	Select a number of iteration which enable the test to run for 
+    	more than 10s and less than 26s to avoid watchdog.
+
+config RUN_TYPE
+    string
+    default "PERFORMANCE_RUN" if PERFORMANCE_RUN
+    default "VALIDATION_RUN" if VALIDATION_RUN
+    default "PROFILE_RUN" if PROFILE_RUN
+    
+config OPTIMIZATION
+	string
+	default "-O3" if O3
+	default "-O0" if O0
+	
+
+endmenu

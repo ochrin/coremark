@@ -1,0 +1,3 @@
+# Compiling everything with -O3 does not improve the performance
+
+# CFLAGS += $(subst ",,$(CONFIG_OPTIMIZATION)) -Wno-error=maybe-uninitialized
