@@ -30,9 +30,8 @@ tar xvzf xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
 ```
 cd
 mkdir git
-git clone --recursive https://github.com/espressif/ESP8266_RTOS_SDK.git
-cd ESP8266_RTOS_SDK
-git checkout release/v3.3 
+git clone --recursive --branch release/v3.3 https://github.com/espressif/ESP8266_RTOS_SDK.git
+cd ESP8266_RTOS_SDK 
 python -m pip install --user -r ./requirements.txt
 cd ..
 ```
@@ -41,21 +40,22 @@ cd ..
 ```
 cd 
 cd git
-git clone https://github.com/Ochrin/coremark.git
-git branch 
+git clone https://github.com/ochrin/coremark.git 
 ```
 
-## How to compile
+## How to build
 ```
 export IDF_PATH=~/git/ESP8266_RTOS_SDK
 export PATH=~/xtensa-lx106-elf/bin:$PATH
-make menuconfig
-```
-You may adjust CoreMark settings in _CoreMark configuration_ else simply exit.
-
-```
 make all
 ```
+## How to configure CoreMark (optional)
+```
+make menuconfig
+```
+You may adjust CoreMark settings in _CoreMark configuration_ else simply exit.  
+Number of iterations should not be too long to avoid watchdog error.  
+You will need to build afterward.
 
 ## How to run
 ```

@@ -18,9 +18,4 @@ before_script:
 language: minimal
 
 script:
-   - ls
-   - pwd
-   - echo $IDF_PATH
-   - echo $PATH
-   - ls $IDF_PATH/make
    - make all
