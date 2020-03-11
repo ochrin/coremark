@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/ochrin/coremark.svg?branch=master)](https://travis-ci.com/ochrin/coremark)
+
 # CoreMark
 Starts a FreeRTOS task to run CoreMark benchmark.
 
