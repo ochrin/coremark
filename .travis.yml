@@ -12,7 +12,7 @@ before_script:
    - cd ESP8266_RTOS_SDK
    - python -m pip install --user -r ./requirements.txt
    - cd ..
-   - export IDF_PATH=$PWD/git/ESP8266_RTOS_SDK
+   - export IDF_PATH=$PWD/ESP8266_RTOS_SDK
    - popd
 
 language: minimal
