@@ -1,0 +1,17 @@
+addons:
+  apt:
+    update: true
+    packages: gcc git wget make libncurses-dev flex bison gperf python
+
+before_script:
+   - wget https://dl.espressif.com/dl/xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
+   - tar xvzf xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
+   - export PATH=PWD/xtensa-lx106-elf/bin:$PATH
+   - git clone --recursive https://github.com/espressif/ESP8266_RTOS_SDK.git
+   - cd ESP8266_RTOS_SDK
+   - git checkout release/v3.3
+   - python -m pip install --user -r ./requirements.txt
+   - cd ..
+   - export IDF_PATH=$PWD/git/ESP8266_RTOS_SDK
+
+language: C
