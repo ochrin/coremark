@@ -13,4 +13,7 @@ before_script:
    - cd ..
    - export IDF_PATH=$PWD/git/ESP8266_RTOS_SDK
 
-language: C
+language: minimal
+
+script:
+   - make all
