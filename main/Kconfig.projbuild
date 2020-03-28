@@ -29,12 +29,12 @@ config O0
 endchoice
 
 config ITERATIONS
-    int "Number of iterations (1000 to 5000)"
+    int "Number of iterations (1000 to 10000)"
     default 2000
-    range 1000 5000
+    range 1000 10000
     help
     	Select a number of iteration which enable the test to run for 
-    	more than 10s and less than 26s to avoid watchdog.
+    	more than 10s.
 
 config RUN_TYPE
     string

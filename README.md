@@ -32,6 +32,7 @@ mkdir git
 git clone --recursive --branch release/v4.1 https://github.com/espressif/esp-idf.git
 cd esp-idf
 ./install.sh
+. ./export.sh
 cd ..
 ```
 
