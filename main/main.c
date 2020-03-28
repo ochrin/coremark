@@ -11,12 +11,15 @@
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
+#include "esp_task_wdt.h"
 
 int main(int argc, char *argv[]);
 
-void app_main()
+void app_main(void)
 {
     char *param[] = {"0", "0", "0x66", "2500"};		// These parameters are not taken into account
+
+    esp_task_wdt_delete(xTaskGetIdleTaskHandle());
 
     main(4,param);
 }

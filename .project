@@ -26,9 +26,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>ESP8266_RTOS_SDK_3.3</name>
+			<name>esp-idf</name>
 			<type>2</type>
-			<location>/home/gautier/git/ESP8266_RTOS_SDK_3.3</location>
+			<location>/home/gautier/git/esp-idf</location>
 		</link>
 	</linkedResources>
 </projectDescription>

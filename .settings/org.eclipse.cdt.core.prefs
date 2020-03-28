@@ -14,10 +14,10 @@ environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/BATCH_BU
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/BATCH_BUILD/operation=append
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/BATCH_BUILD/value=1
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/IDF_PATH/delimiter=\:
-environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/IDF_PATH/operation=append
-environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/IDF_PATH/value=/home/gautier/git/ESP8266_RTOS_SDK_3.3
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/IDF_PATH/operation=replace
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/IDF_PATH/value=${HOME}/git/esp-idf
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/PATH/delimiter=\:
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/PATH/operation=replace
-environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/PATH/value=/opt/xtensa-lx106-elf/bin\:/bin\:/home/gautier/.nvm/versions/node/v12.14.1/bin\:/home/gautier/git/esp-open-sdk/xtensa-lx106-elf/bin\:/home/gautier/.local/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/usr/games\:/usr/local/games\:/snap/bin\:/home/gautier/Android/Sdk/emulator\:/home/gautier/Android/Sdk/tools\:/home/gautier/Android/Sdk/tools/bin\:/home/gautier/Android/Sdk/paltform-tools\:/opt/flutter/bin
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/PATH/value=/home/gautier/git/esp-idf/components/esptool_py/esptool\:/home/gautier/git/esp-idf/components/espcoredump\:/home/gautier/git/esp-idf/components/partition_table/\:/home/gautier/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin\:/home/gautier/.espressif/tools/xtensa-esp32s2-elf/esp-2019r2-8.2.0/xtensa-esp32s2-elf/bin\:/home/gautier/.espressif/tools/esp32ulp-elf/2.28.51-esp-20191205/esp32ulp-elf-binutils/bin\:/home/gautier/.espressif/tools/esp32s2ulp-elf/2.28.51-esp-20191205/esp32s2ulp-elf-binutils/bin\:/home/gautier/.espressif/tools/openocd-esp32/v0.10.0-esp32-20191114/openocd-esp32/bin\:/home/gautier/.espressif/python_env/idf4.1_py2.7_env/bin\:/home/gautier/git/esp-idf/tools\:/home/gautier/bin\:/home/gautier/.local/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:/usr/local/games\:/snap/bin
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/append=true
 environment/project/cdt.managedbuild.toolchain.gnu.cross.base.587175514/appendContributed=false

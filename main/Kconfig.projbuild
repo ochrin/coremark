@@ -23,14 +23,14 @@ choice COMPILER_FLAGS
 
 config O3
 	bool "Turn on all"
-config 00
+config O0
 	bool "Turn off all"
 	
 endchoice
 
 config ITERATIONS
     int "Number of iterations (1000 to 5000)"
-    default 5000
+    default 2000
     range 1000 5000
     help
     	Select a number of iteration which enable the test to run for 
@@ -46,6 +46,5 @@ config OPTIMIZATION
 	string
 	default "-O3" if O3
 	default "-O0" if O0
-	
 
 endmenu

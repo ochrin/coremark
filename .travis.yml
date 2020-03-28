@@ -1,21 +1,16 @@
 addons:
   apt:
     update: true
-    packages: gcc git wget make libncurses-dev flex bison gperf python
+    packages: git wget libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-click python-cryptography python-future python-pyparsing python-pyelftools cmake ninja-build ccache libffi-dev libssl-dev
 
 before_script:
    - pushd ~
-   - wget https://dl.espressif.com/dl/xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
-   - tar xvzf xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
-   - export PATH=$PWD/xtensa-lx106-elf/bin:$PATH
-   - git clone --recursive --branch release/v3.3 https://github.com/espressif/ESP8266_RTOS_SDK.git
-   - cd ESP8266_RTOS_SDK
-   - python -m pip install --user -r ./requirements.txt
-   - cd ..
-   - export IDF_PATH=$PWD/ESP8266_RTOS_SDK
+   - git clone --recursive --branch release/v4.1 https://github.com/espressif/esp-idf.git
+   - cd esp-idf
+   - ./install.sh
    - popd
 
 language: minimal
 
 script:
-   - make all
+   - idf.py build

@@ -7,34 +7,31 @@ See [EEMBC](https://github.com/eembc/coremark) for more details.
 
 ## Current results
 
-| Processor     | CoreMark      | CoreMark/MHz  |
-| ------------- | :-----------: | ------------: |
-| ESP8266       | 191           | 2.375         |
-| ESP32         | TBD           |   TBD         |
-| ...           | ...           |   ...         |
+| Processor     | Freq (MHz)   | CoreMark      | CoreMark/MHz  |
+| ------------- | :----------: | :-----------: | ------------: |
+| ESP8266       | 80           | 191           | 2.375         |
+| ESP32         | 80           | 166           | 2.075         |
+|               | 160          | 331           | 2.075         |
+|               | 240          | 498           | 2.075         |
+| ...           | ...          | ...           |   ...         |
 
 (larger numbers are better)
 
 ## How to install
+See [Espressif](https://docs.espressif.com/projects/esp-idf/en/v4.0/get-started/index.html#installation-step-by-step) for latest procedure
+
 ### Prerequisite (on Ubuntu)
 ```
-sudo apt install gcc git wget make libncurses-dev flex bison gperf python python-serial screen
-```
-
-### Get compiler
-```
-cd 
-wget https://dl.espressif.com/dl/xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
-tar xvzf xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
+sudo apt install git wget libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-click python-cryptography python-future python-pyparsing python-pyelftools cmake ninja-build ccache libffi-dev libssl-dev
 ```
 
 ### Get SDK
 ```
 cd
 mkdir git
-git clone --recursive --branch release/v3.3 https://github.com/espressif/ESP8266_RTOS_SDK.git
-cd ESP8266_RTOS_SDK 
-python -m pip install --user -r ./requirements.txt
+git clone --recursive --branch release/v4.1 https://github.com/espressif/esp-idf.git
+cd esp-idf
+./install.sh
 cd ..
 ```
 
@@ -42,26 +39,23 @@ cd ..
 ```
 cd 
 cd git
-git clone https://github.com/ochrin/coremark.git 
+git clone --branch esp32 https://github.com/ochrin/coremark.git 
 ```
 
 ## How to build
 ```
-export IDF_PATH=~/git/ESP8266_RTOS_SDK
-export PATH=~/xtensa-lx106-elf/bin:$PATH
-make all
+idf.py build
 ```
 ## How to configure CoreMark (optional)
 ```
-make menuconfig
+idf.py menuconfig
 ```
 You may adjust CoreMark settings in _CoreMark configuration_ else simply exit.  
-Number of iterations should not be too long to avoid watchdog error.  
 You will need to build afterward.
 
 ## How to run
 ```
-make flash; screen /dev/ttyUSB0 115200
+idf.py -p /dev/ttyUSB0 flash; screen /dev/ttyUSB0 115200
 ```
 Ctrl-a + k then y to exit screen
 
@@ -69,18 +63,18 @@ Ctrl-a + k then y to exit screen
 ```
 2K performance run parameters for coremark.
 CoreMark Size    : 666
-Total ticks      : 1309
-Total time (secs): 13.090000
-Iterations/Sec   : 190.985485
-Iterations       : 2500
-Compiler version : GCC5.2.0
+Total ticks      : 15070
+Total time (secs): 15.070000
+Iterations/Sec   : 331.785003
+Iterations       : 5000
+Compiler version : GCC8.2.0
 Compiler flags   : -O3
 Memory location  : STACK
 seedcrc          : 0xe9f5
 [0]crclist       : 0xe714
 [0]crcmatrix     : 0x1fd7
 [0]crcstate      : 0x8e3a
-[0]crcfinal      : 0x5275
+[0]crcfinal      : 0xbd59
 Correct operation validated. See README.md for run and reporting rules.
-CoreMark 1.0 : 190.985485 / GCC5.2.0 -O3 / STACK
+CoreMark 1.0 : 331.785003 / GCC8.2.0 -O3 / STACK
 ```
