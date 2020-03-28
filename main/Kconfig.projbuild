@@ -23,7 +23,7 @@ choice COMPILER_FLAGS
 
 config O3
 	bool "Turn on all"
-config 00
+config O0
 	bool "Turn off all"
 	
 endchoice
