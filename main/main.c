@@ -15,11 +15,16 @@
 
 int main(int argc, char *argv[]);
 
-void app_main(void)
+void main_task(void *p)
 {
     char *param[] = {"0", "0", "0x66", "2500"};		// These parameters are not taken into account
 
-    esp_task_wdt_delete(xTaskGetIdleTaskHandle());
-
     main(4,param);
+
+    vTaskDelete(NULL);
+}
+
+void app_main(void)
+{
+    xTaskCreate(main_task, "main", 8192, NULL, 6, NULL);
 }

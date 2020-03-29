@@ -20,11 +20,16 @@ choice COMPILER_FLAGS
     default O3
     help 
     	Compiler optimization. For best CoreMark result select Turn on all.
+    	Pratically this is a choice between -O3 and -O0.
 
 config O3
 	bool "Turn on all"
+	help 
+		Compile Coremark with -O3
 config O0
 	bool "Turn off all"
+	help 
+		Compile Coremark with -O0
 	
 endchoice
 
@@ -35,7 +40,16 @@ config ITERATIONS
     help
     	Select a number of iteration which enable the test to run for 
     	more than 10s.
-
+    	
+config MULTITHREAD    	
+    int "Number of tasks (1 to 2)"
+    default 2
+    range 1 2
+    help
+    	Select the number of tasks to run in parallel.
+    	1 for a single core execution.
+    	And 2 if you want to use both cores.
+    	
 config RUN_TYPE
     string
     default "PERFORMANCE_RUN" if PERFORMANCE_RUN

@@ -18,8 +18,9 @@ Original Author: Shay Gal-on
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "coremark.h"
-#include "freertos/FreeRTOS.h"
+
 
 #define ITERATIONS 	CONFIG_ITERATIONS
 
@@ -61,6 +62,10 @@ Original Author: Shay Gal-on
 
 /** Define Host specific (POSIX), or target specific global time variables. */
 static CORETIMETYPE start_time_val, stop_time_val;
+
+#if (MULTITHREAD>1)
+static EventGroupHandle_t task_iterate_event_group;	// Used to indicate when a task is done in multithread
+#endif
 
 /* Function : start_time
 	This function will be called right before starting the timed portion of the benchmark.
@@ -104,7 +109,7 @@ secs_ret time_in_secs(CORE_TICKS ticks) {
 	return retval;
 }
 
-ee_u32 default_num_contexts=1;
+ee_u32 default_num_contexts=MULTITHREAD;
 
 /* Function : portable_init
 	Target specific initialization code 
@@ -119,6 +124,11 @@ void portable_init(core_portable *p, int *argc, char *argv[])
 		ee_printf("ERROR! Please define ee_u32 to a 32b unsigned type!\n");
 	}
 	p->portable_id=1;
+
+#if (MULTITHREAD>1)
+	task_iterate_event_group = xEventGroupCreate();
+#endif
+
 }
 /* Function : portable_fini
 	Target specific final code 
@@ -127,5 +137,37 @@ void portable_fini(core_portable *p)
 {
 	p->portable_id=0;
 }
+#if (MULTITHREAD>1)
+// Used to solve cast issue and to avoid modifying non portme code
+static void iterate_freertos(void *pres) {
+	core_results *res=(core_results *)pres;
 
+	iterate(pres);
+
+	xEventGroupSetBits(*(res->port.event_group), res->port.event_bit);
+	vTaskDelete(NULL);
+}
+#define SIZE_NAME 20
+ee_u8 core_start_parallel(core_results *res) {
+	static BaseType_t core = 0; // Core on which we start the iterate task
+	char name[SIZE_NAME+1];
+
+	strncpy(name, "iterate",SIZE_NAME);
+	strncat(name, "0"+core, SIZE_NAME);
+	res->port.event_bit = (1<<core);	// Bit to set to indicate task is done
+	res->port.event_group = &task_iterate_event_group; // A pointer to the event group
+
+	xTaskCreatePinnedToCore(iterate_freertos, name, 8192, res, 1, NULL, core);
+
+	core += 1; // Next call, next core
+
+	return 1;
+}
+ee_u8 core_stop_parallel(core_results *res) {
+	// Wait for task to be finished
+	xEventGroupWaitBits(*(res->port.event_group), res->port.event_bit, false, false, 120000 / portTICK_RATE_MS);
+
+	return 1;
+}
+#endif
 

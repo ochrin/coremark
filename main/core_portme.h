@@ -16,6 +16,10 @@ limitations under the License.
 Original Author: Shay Gal-on
 */
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/event_groups.h"
+
 /* Topic : Description
 	This file contains configuration constants required to execute on different platforms
 */
@@ -120,7 +124,7 @@ typedef size_t ee_size_t;
 	MEM_STACK - to allocate the data block on the stack (NYI).
 */
 #ifndef MEM_METHOD
-#define MEM_METHOD MEM_STATIC
+#define MEM_METHOD MEM_STACK
 #endif
 
 /* Configuration : MULTITHREAD
@@ -139,7 +143,7 @@ typedef size_t ee_size_t;
 	to fit a particular architecture. 
 */
 #ifndef MULTITHREAD
-#define MULTITHREAD 1
+#define MULTITHREAD CONFIG_MULTITHREAD
 #define USE_PTHREAD 0
 #define USE_FORK 0
 #define USE_SOCKET 0
@@ -175,8 +179,15 @@ typedef size_t ee_size_t;
 */
 extern ee_u32 default_num_contexts;
 
+#define PARALLEL_METHOD "FreeRTOS"
+
 typedef struct CORE_PORTABLE_S {
 	ee_u8	portable_id;
+#if (MULTITHREAD>1)
+	TaskHandle_t handle;
+	ee_u32 event_bit;
+	EventGroupHandle_t *event_group;
+#endif
 } core_portable;
 
 /* target specific init/fini */
