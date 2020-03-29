@@ -24,7 +24,12 @@ choice COMPILER_FLAGS
 config O3
 	bool "Turn on all"
 config O0
+	help 
+		Compile Coremark with -O3
+config O0
 	bool "Turn off all"
+	help 
+		Compile Coremark with -O0
 	
 endchoice
 

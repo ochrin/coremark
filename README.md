@@ -6,16 +6,23 @@ Starts a FreeRTOS task to run CoreMark benchmark.
 See [EEMBC](https://github.com/eembc/coremark) for more details.
 
 ## Current results
+In parenthesis result with -O0 for comparaison, otherwise -O3 is used to compile Coremark.
 
-| Processor     | CoreMark      | CoreMark/MHz  |
-| ------------- | :-----------: | ------------: |
-| ESP8266       | 191           | 2.375         |
-| ESP32         | TBD           |   TBD         |
-| ...           | ...           |   ...         |
+| Processor       | Freq (MHz)   | CoreMark      | CoreMark/MHz  |
+| :-------------- | :----------  | :-----------  | :-----------  |
+| ESP8266         | 80           | 191           | 2.375         |
+| ESP32 (2 cores) | 160          | 660.7         | 4.13          |
+|                 | 240          | 991.1         | 4.13          |
+| ESP32 (1 core)  | 80           | 165.7         | 2.07          |
+|                 | 160          | 331.7 (78.1)  | 2.07 (0.49)   |
+|                 | 240          | 497.8         | 2.07          |
+| ...             | ...          | ...           | ...           |
 
 (larger numbers are better)
 
 ## How to install
+See [Espressif](https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html#setup-toolchain) for latest procedure
+
 ### Prerequisite (on Ubuntu)
 ```
 sudo apt install gcc git wget make libncurses-dev flex bison gperf python python-serial screen
