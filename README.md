@@ -11,11 +11,12 @@ In parenthesis result with -O0 for comparaison, otherwise -O3 is used to compile
 | Processor       | Freq (MHz) | CoreMark     | CoreMark/MHz |
 | :-------------- | :--------- | :----------- | ------------ |
 | ESP8266         | 80         | 191          | 2.375        |
-| ESP32 (2 cores) | 160        | 664.6        | 4.15         |
-|                 | 240        | **997.0**    | 4.15         |
-| ESP32 (1 core)  | 80         | 165.7        | 2.07         |
-|                 | 160        | 331.7 (78.1) | 2.07 (0.49)  |
-|                 | 240        | 497.8        | 2.07         |
+| ESP32 (2 cores) | 160        | 665.9        | 4.16         |
+|                 | 240        | **999.2**    | 4.16         |
+| ESP32 (1 core)  | 80         | 165.9        | 2.07         |
+|                 | 160        | 330.9 (78.1) | 2.07 (0.49)  |
+|                 | 240        | 494.6        | 2.06         |
+| ESP32 S2        |            |              |              |
 | ...             | ...        | ...          | ...          |
 
 (larger numbers are better)
@@ -29,17 +30,17 @@ sudo apt-get install git wget flex bison gperf python python-pip python-setuptoo
 ```
 You may have to delete ~/.espressif if you have an old installation
 
-Python3 should be used when calling python. You may have problem if you are still using python2.x.
+Remove python2.x if you can and type:
 
 ```
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+sudo update-alternatives --set python /usr/bin/python3
 ```
 
-### Get SDK
+### Get SDK (latest)
 ```
 cd
 mkdir git
-git clone --recursive --branch release/v4.2 https://github.com/espressif/esp-idf.git
+git clone --recursive https://github.com/espressif/esp-idf.git
 cd esp-idf
 ./install.sh
 . ./export.sh
@@ -55,6 +56,7 @@ git clone --branch esp32 https://github.com/ochrin/coremark.git
 
 ## How to build
 ```
+idf.py set-target esp32
 idf.py build
 ```
 ## How to configure CoreMark (optional)
@@ -76,11 +78,11 @@ You have to wait about 20 to 30s to get the results.
 ```
 2K performance run parameters for coremark.
 CoreMark Size    : 666
-Total ticks      : 30270
-Total time (secs): 30.270000
-Iterations/Sec   : 660.720185
-Iterations       : 20000
-Compiler version : GCC8.2.0
+Total ticks      : 18020
+Total time (secs): 18.020000
+Iterations/Sec   : 665.926748
+Iterations       : 12000
+Compiler version : GCC8.4.0
 Compiler flags   : -O3
 Parallel FreeRTOS : 2
 Memory location  : DRAM
@@ -91,8 +93,8 @@ seedcrc          : 0xe9f5
 [1]crcmatrix     : 0x1fd7
 [0]crcstate      : 0x8e3a
 [1]crcstate      : 0x8e3a
-[0]crcfinal      : 0x988c
-[1]crcfinal      : 0x988c
+[0]crcfinal      : 0xa14c
+[1]crcfinal      : 0xa14c
 Correct operation validated. See README.md for run and reporting rules.
-CoreMark 1.0 : 660.720185 / GCC8.2.0 -O3 / DRAM / 2:FreeRTOS
+CoreMark 1.0 : 665.926748 / GCC8.4.0 -O3 / DRAM / 2:FreeRTOS
 ```
