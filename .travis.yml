@@ -1,11 +1,11 @@
 addons:
   apt:
     update: true
-    packages: git wget libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-click python-cryptography python-future python-pyparsing python-pyelftools cmake ninja-build ccache libffi-dev libssl-dev
+    packages: git wget flex bison gperf python python-pip python-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
 
 before_script:
    - pushd ~
-   - git clone --recursive --branch release/v4.1 https://github.com/espressif/esp-idf.git
+   - git clone --recursive --branch release/v4.2 https://github.com/espressif/esp-idf.git
    - cd esp-idf
    - ./install.sh
    - . ./export.sh
