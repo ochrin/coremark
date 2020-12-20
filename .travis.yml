@@ -4,8 +4,9 @@ addons:
     packages: git wget flex bison gperf python python-pip python-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
 
 before_script:
+   - sudo update-alternatives --set python /usr/bin/python3
    - pushd ~
-   - git clone --recursive --branch release/v4.2 https://github.com/espressif/esp-idf.git
+   - git clone --recursive https://github.com/espressif/esp-idf.git
    - cd esp-idf
    - ./install.sh
    - . ./export.sh
