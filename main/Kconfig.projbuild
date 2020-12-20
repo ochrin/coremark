@@ -42,13 +42,8 @@ config ITERATIONS
     	more than 10s.
     	
 config MULTITHREAD    	
-    int "Number of tasks (1 to 2)"
-    default 2
-    range 1 2
-    help
-    	Select the number of tasks to run in parallel.
-    	1 for a single core execution.
-    	And 2 if you want to use both cores.
+    int
+    default 1
     	
 config RUN_TYPE
     string
