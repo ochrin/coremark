@@ -28,7 +28,7 @@ See [Espressif](https://docs.espressif.com/projects/esp-idf/en/v4.0/get-started/
 
 ### Prerequisite (on Ubuntu 18.04)
 ```
-sudo apt-get install git wget flex bison gperf python python-pip python-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
+sudo apt-get install git wget flex bison gperf python3 python3-pip python3-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
 ```
 You may have to delete ~/.espressif if you have an old installation
 

@@ -1,9 +1,10 @@
 addons:
   apt:
     update: true
-    packages: git wget flex bison gperf python python-pip python-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
+    packages: git wget flex bison gperf python3 python3-pip python3-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
 
 before_script:
+   - sudo apt purge -y python2.7-minimal
    - sudo update-alternatives --set python /usr/bin/python3
    - pushd ~
    - git clone --recursive https://github.com/espressif/esp-idf.git
